@@ -1,0 +1,119 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="RU">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+    <script src="{% static 'jquery.min.js' %}"></script>
+    <title>Questions?</title>
+</head>
+<body>
+<div class="container-fluid">
+    {% block modal_question %}{% endblock %}
+<!-- Modal windom -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <form role="form" method="GET">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title" id="myModalLabel">Создание нового обращения:</h4>
+                </div>
+                <div class="modal-body">
+                    <p class="help-block">Заполните все поля помеченные звездочкой</p>
+                    <div class="form-group">
+                        <label for="exampleInputTitle">Тема обращения:</label>
+                        <input type="text" name="title" class="form-control" placeholder="Финансовый вопрос">
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputName">Имя пользователя:</label>
+                        <input type="text" name="full_name" class="form-control" placeholder="Вася Пупкин">
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">Email</label>
+                        <input type="email" name="user_email" class="form-control" placeholder="pupkin@example.org">
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputNumber">Номер телефона:</label>
+                        <input type="text" name="full_number" class="form-control" placeholder="+99677717195">
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputText">Обращение:</label>
+                        <textarea name="text" class="form-control" rows="3" placeholder="Где мои деньги?"></textarea>
+                    </div>                    
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Закрыть</button>
+                    <button type="submit" class="btn btn-primary">Создать обращение</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<!-- End Modal windom -->
+<!-- Header --> 
+    <div class="navbar navbar-static-top">
+        <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <a class="navbar-brand" href="#">Номер тикета: #2013</a>
+                </div>
+                <div class="collapse navbar-collapse">
+                    <ul class="nav navbar-nav navbar-right">
+                        <li><a data-toggle="modal" data-target="#myModal" href="#">Задать еще один вопрос?</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </div>
+<!-- End header -->
+<!-- Main -->
+<div class="col-md-1"></div>
+<div class="col-md-9">
+<!-- Dialog -->
+    <div data-spy="scroll" data-offset="0" class="scrollspy-example row well" style="height:450px; overflow:auto;">
+        {% for question in all %}
+        <div class="media">
+            <a class="pull-right">
+                <img class="media-object" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI2NCIgaGVpZ2h0PSI2NCI+PHJlY3Qgd2lkdGg9IjY0IiBoZWlnaHQ9IjY0IiBmaWxsPSIjZWVlIi8+PHRleHQgdGV4dC1hbmNob3I9Im1pZGRsZSIgeD0iMzIiIHk9IjMyIiBzdHlsZT0iZmlsbDojYWFhO2ZvbnQtd2VpZ2h0OmJvbGQ7Zm9udC1zaXplOjEycHg7Zm9udC1mYW1pbHk6QXJpYWwsSGVsdmV0aWNhLHNhbnMtc2VyaWY7ZG9taW5hbnQtYmFzZWxpbmU6Y2VudHJhbCI+NjR4NjQ8L3RleHQ+PC9zdmc+" alt="...">
+            </a>
+            <div class="media-body">
+                <h4 class="media-heading">{{ question.full_name }}</h4>
+                {{ question.text }}
+            </div>
+        </div>
+        <hr>
+        {% endfor %}
+    </div>
+<!-- End dialog -->
+<!-- Answer -->
+    <div class="row affix-bottom well">
+        <form role="form" method="GET">
+            <div class="col-md-1">
+                <img class="media-object" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI2NCIgaGVpZ2h0PSI2NCI+PHJlY3Qgd2lkdGg9IjY0IiBoZWlnaHQ9IjY0IiBmaWxsPSIjZWVlIi8+PHRleHQgdGV4dC1hbmNob3I9Im1pZGRsZSIgeD0iMzIiIHk9IjMyIiBzdHlsZT0iZmlsbDojYWFhO2ZvbnQtd2VpZ2h0OmJvbGQ7Zm9udC1zaXplOjEycHg7Zm9udC1mYW1pbHk6QXJpYWwsSGVsdmV0aWNhLHNhbnMtc2VyaWY7ZG9taW5hbnQtYmFzZWxpbmU6Y2VudHJhbCI+NjR4NjQ8L3RleHQ+PC9zdmc+" alt="...">
+            </div>
+            <div class="col-md-8">
+                <textarea class="form-control" rows="2"></textarea>
+            </div>
+            <div class="col-md-3">
+                <div class="input-group">
+                <select class="form-control">
+                    <option>Опубликован</option>
+                    <option>Дубликат</option>
+                    <option>Отклонен</option>
+                </select>
+                <span class="input-group-btn">
+                    <button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-send"></span></button>
+                </span>
+                </div>
+            </div>
+        </form>
+    </div>
+    </div>
+<!-- End answer -->
+</div>
+<div class="col-md-2"></div>
+<script src="{% static 'jquery.min.js' %}"></script>
+<script src="{% static 'js/bootstrap.js' %}"></script>
+</body>
+</html>

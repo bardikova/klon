@@ -1,0 +1,62 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="RU">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+    <script src="{% static 'jquery.min.js' %}"></script>
+    <title>Questions?</title>
+</head>
+<body>
+<!-- Modal windom -->
+            <form role="form" method="GET">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title" id="myModalLabel">Создание нового обращения:</h4>
+                </div>
+                <div class="modal-body">
+                    <p class="help-block">Заполните все поля помеченные звездочкой</p>
+                    <div class="form-group">
+                        <label for="exampleInputNumber">Номер запроса:</label>
+                        <input type="text" name="request_number" class="form-control" placeholder="Номер обращения">
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputTitle">Тема обращения:</label>
+                        <input type="text" name="title" class="form-control" placeholder="Финансовый вопрос">
+                    </div>
+                    
+                        <label for="exampleInputEmail1">Email</label>
+                        <input type="email" name="user_email" class="form-control" placeholder="pupkin@example.org">
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputNumber">Номер телефона:</label>
+                        <input type="text" name="phone_number" class="form-control" placeholder="+99677717195">
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputText">Обращение:</label>
+                        <textarea name="text" class="form-control" rows="3" placeholder="Где мои деньги?"></textarea>
+                    </div>
+                <div class="input-group">
+                <select name="status" class="form-control">
+                    <option value="new">Новое обращение</option>
+                    <option value="published">Опубликован</option>
+                    <option value="duplicate">Дубликат</option>
+                    <option value="decline">Отклонен</option>
+                </select>
+                </div>                   
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Закрыть</button>
+                    <button type="submit" class="btn btn-primary">Создать обращение</button>
+                </div>
+            </form>
+<!-- End Modal windom -->
+<script src="{% static 'jquery.min.js' %}"></script>
+<script src="{% static 'js/bootstrap.js' %}"></script>
+</body>
+</html>
+{# {% extends 'questions/question_list.html' %} #}
+
+{# {% block modal_question %} #}
+
+{# {% endblock %} #}

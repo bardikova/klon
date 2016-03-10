@@ -1,0 +1,20 @@
+{% extends 'main/base.html' %}
+
+
+{% block content %}
+	{% for question in questions %}
+		<a href="{% url 'question_detail' question.id %}">{{ question.title }}</a>
+		<a href="{% url 'change_status' question.id 'new' %}">Новый</a>
+		<a href="{% url 'change_status' question.id 'published' %}">Опубликован</a>
+		<a href="{% url 'change_status' question.id 'decline' %}">Отклонен</a>
+		<a href="{% url 'change_status' question.id 'duplicate' %}">Дубляж</a>
+		<p>{{ question.text }}</p>
+		<p>{{ question.answer}}</p>
+		<p>{{ question.created_at|date:"M/d"|lower }}</p>
+		{% if request.user.is_superuser %}
+
+			<a href="{% url 'delete' question.id %}">&times;</a>
+
+		{% endif %}
+	{% endfor %}
+{% endblock%}
